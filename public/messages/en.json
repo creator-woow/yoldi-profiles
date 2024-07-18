@@ -1,0 +1,9 @@
+{
+  "registration_page": {
+    "name_field": "Name",
+    "email_field": "E-mail",
+    "password_field": "Password",
+    "show_password": "Show password",
+    "account_exists": "Already has an account? <link>Login</link>"
+  }
+}

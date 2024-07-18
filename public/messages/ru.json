@@ -1,0 +1,9 @@
+{
+  "registration_page": {
+    "name_field": "Имя",
+    "email_field": "E-mail",
+    "password_field": "Пароль",
+    "show_password": "Показать пароль",
+    "account_exists": "Уже есть аккаунт? <link>Войти</link>"
+  }
+}

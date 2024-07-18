@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-color: 104, 45%, 53%;
+    --border-color: 0, 0%, 50%;
+    --not-accent-color: 0, 0%, 60%;
+    --danger-color: 8, 100%, 59%;
+  }
+
+  :root[data-theme="light"] {
+    --background-color: 0, 0%, 100%;
+    --text-color-primary: 0, 0%, 0%;
+    --text-color-primary-contrast: 0, 0%, 100%;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root[data-theme="system"] {
+      --background-color: 0, 0%, 100%;
+      --text-color-primary: 0, 0%, 0%;
+      --text-color-primary-contrast: 0, 0%, 100%;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --background-color: 0, 0%, 0%;
+    --text-color-primary: 0, 0%, 100%;
+    --text-color-primary-contrast: 0, 0%, 0%;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root[data-theme="system"] {
+      --background-color: 0, 0%, 0%;
+      --text-color-primary: 0, 0%, 100%;
+      --text-color-primary-contrast: 0, 0%, 0%;
+    }
+  }
+
+}
+
+@layer components {
+  .content-container {
+    @apply
+      px-4 mx-auto
+      md:max-w-[800px]
+      lg:max-w-[1200px]
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+}
