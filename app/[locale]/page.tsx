@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { getTranslations } from 'shared/lib/intl';
 
-const Home: FC = async () => {
-  const t = await getTranslations();
+import { RoutePath } from 'shared/lib/const';
+import { redirect } from 'next/navigation';
 
-  return <main>{t('registration_page.name_field')}</main>;
+const RootPage: FC = () => {
+  redirect(RoutePath.ProfilesRoot);
 };
 
-export default Home;
+export default RootPage;

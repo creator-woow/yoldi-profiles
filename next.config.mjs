@@ -12,7 +12,15 @@ const nextConfig = {
 
     return config;
   },
-  output: 'standalone'
+  output: 'standalone',
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**'
+      }
+    ]
+  }
 };
 
 export default  intlPlugin(nextConfig)

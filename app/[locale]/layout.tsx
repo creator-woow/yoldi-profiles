@@ -1,13 +1,9 @@
 import { FC, PropsWithChildren } from 'react';
 import { Inter } from 'next/font/google';
 import { Metadata } from 'next';
+
 import { cookies } from 'next/headers';
 import { getMessages } from 'next-intl/server';
-
-const interFont = Inter({
-  style: 'normal',
-  subsets: ['latin', 'cyrillic'],
-});
 
 import 'app/styles/globals.css';
 import {
@@ -15,9 +11,16 @@ import {
   THEME_COOKIE_NAME,
   Theme,
 } from 'shared/config/theme';
-import { IntlProvider } from 'app/providers/intlProvider';
-import { ThemeProvider } from 'app/providers/themeProvider';
+import { AuthProvider } from 'app/providers/auth';
+import { Header } from 'widgets/header';
+import { IntlProvider } from 'app/providers/intl';
+import { ThemeProvider } from 'app/providers/theme';
 import { clsx } from 'shared/utils/clsx';
+
+const interFont = Inter({
+  style: 'normal',
+  subsets: ['latin', 'cyrillic'],
+});
 
 type RootLayoutProps = PropsWithChildren<{
   params: {
@@ -34,7 +37,9 @@ const Providers: FC<PropsWithChildren> = async (props) => {
 
   return (
     <IntlProvider messages={messages}>
-      <ThemeProvider>{props.children}</ThemeProvider>
+      <AuthProvider profile={null}>
+        <ThemeProvider>{props.children}</ThemeProvider>
+      </AuthProvider>
     </IntlProvider>
   );
 };
@@ -50,7 +55,12 @@ const RootLayout: FC<RootLayoutProps> = ({ params, children }) => {
   return (
     <html {...htmlAttributes}>
       <body className={clsx(interFont.className)}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <div className="flex flex-col h-dvh">
+            <Header />
+            <main className="flex-auto">{children}</main>
+          </div>
+        </Providers>
       </body>
     </html>
   );
