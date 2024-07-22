@@ -1,0 +1,45 @@
+{
+  "form_validation": {
+    "field_required": "Поле обязательно для заполнения",
+    "invalid_email": "Введите корректный email",
+    "min_length": "Минимальная длина поля {count} {count, plural, =1 {символ} =2 {символа} =other {символов}"
+  },
+  "header": {
+    "motto": "Разрабатываем и запускаем сложные веб проекты"
+  },
+  "entry": {
+    "name_field": "Имя",
+    "email_field": "E-mail",
+    "password_field": "Пароль",
+    "show_password": "Показать пароль",
+    "hide_password": "Скрыть пароль",
+    "create_account": "Создать аккаунт",
+    "login": "Войти",
+    "logout": "Выйти"
+  },
+  "registration_page": {
+    "title": "Регистрация \n в Yoldi Agency",
+    "if_account_exists": "Уже есть аккаунт? <link>Войти</link>"
+  },
+  "login_page": {
+    "title": "Вход в Yoldi Agency",
+    "if_no_account": "Еще нет аккаунта? <link>Зарегистрироваться</link>"
+  },
+  "profiles_root_page": {
+    "title": "Список аккаунтов"
+  },
+  "profile_page": {
+    "title": "Страница пользователя \"{name}\""
+  },
+  "edit_profile": {
+    "upload_cover": "Загрузить",
+    "delete_cover": "Удалить",
+    "title": "Редактировать профиль",
+    "edit": "Редактировать",
+    "name": "Имя",
+    "address": "Адрес профиля",
+    "description": "Описание",
+    "cancel": "Отмена",
+    "save": "Сохранить"
+  }
+}

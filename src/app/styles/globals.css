@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --danger: #F00000;
+  }
+
+  :root[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #F3F3F3;
+    --bg-accent: #000000;
+    --border-primary: #D4D4D4;
+    --border-accent: #838383;
+    --text-primary: #000000;
+    --text-secondary: #838383;
+    --text-placeholder: #838383;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root[data-theme="system"] {
+      --bg-primary: #ffffff;
+      --bg-secondary: #F3F3F3;
+      --bg-accent: #000000;
+      --border-primary: #D4D4D4;
+      --border-accent: #838383;
+      --text-primary: #000000;
+      --text-secondary: #838383;
+      --text-placeholder: #838383;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #F3F3F3;
+    --bg-accent: #000000;
+    --border-primary: #D4D4D4;
+    --border-accent: #838383;
+    --text-primary: #000000;
+    --text-secondary: #838383;
+    --text-placeholder: #838383;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root[data-theme="system"] {
+      --bg-primary: #ffffff;
+      --bg-secondary: #F3F3F3;
+      --bg-accent: #000000;
+      --border-primary: #D4D4D4;
+      --border-accent: #838383;
+      --text-primary: #000000;
+      --text-secondary: #838383;
+      --text-placeholder: #838383;
+    }
+  }
+}
+
+@layer components {
+  .content-container {
+    --padding: 30px;
+    padding: 0 var(--padding);
+    max-width: calc(800px + var(--padding) * 2);
+    margin: 0 auto;
+  }
+
+  .title-md {
+    font-size: 30px;
+    line-height: 42px;
+    @apply font-medium;
+  }
+
+  .title-lg {
+    font-size: 36px;
+    line-height: 50px;
+    @apply font-medium;
+  }
+}
+
+@layer utilities {
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+
+  .no-scrollbars {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+
+    &::-webkit-scrollbar {
+      width: 1px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+  }
+
+  .no-scrollbars::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+  }
+}
