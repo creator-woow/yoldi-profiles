@@ -1,4 +1,5 @@
 import clsxEngine from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export const clsx = (...params: Parameters<typeof clsxEngine>) =>
-  clsxEngine(params);
+  twMerge(clsxEngine(params));
