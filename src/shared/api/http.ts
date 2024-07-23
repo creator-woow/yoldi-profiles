@@ -1,6 +1,11 @@
 const SERVER_URL = process.env.SERVER_URL || 'http://localhost:3000';
 const API_URL = `${SERVER_URL}/api`;
 
+export interface ResponseError {
+  statusCode: number;
+  message: string;
+}
+
 export class ServerAPI {
   private static async _createRequest<TResponse>(
     url: string,

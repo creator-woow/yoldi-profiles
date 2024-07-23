@@ -2,12 +2,17 @@
 
 import { FC } from 'react';
 
-import { RegistrationData, RegistrationDataSchema } from 'features/entry';
+import {
+  RegistrationData,
+  RegistrationDataSchema,
+  registerUser,
+} from 'features/entry';
 import { Button } from 'shared/ui/button';
 import EmailIcon from 'shared/icons/mail.svg';
 import { Form } from 'shared/ui/form';
 import { Link } from 'shared/ui/link';
 import { PasswordField } from 'features/entry/ui/PasswordField';
+import { ResponseError } from 'shared/api/http';
 import { RoutePath } from 'shared/lib/const';
 import { TextField } from 'shared/ui/textField';
 import UserIcon from 'shared/icons/user.svg';

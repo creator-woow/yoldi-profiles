@@ -1,10 +1,10 @@
 'use client';
 
-import { ProfileImage } from 'entities/profile';
 import { FC } from 'react';
 
 import { Image } from 'shared/ui/image';
 import { Link } from 'shared/ui/link';
+import { ProfileImage } from 'entities/profile';
 import { RoutePath } from 'shared/lib/const';
 import { buttonVariants } from 'shared/ui/button';
 import { useAuth } from 'features/auth';
