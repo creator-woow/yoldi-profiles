@@ -2,7 +2,7 @@ export interface Profile {
   name: string;
   email: string;
   slug: string;
-  description: string;
+  description: string | null;
   image: {
     id: string;
     url: string;

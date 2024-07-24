@@ -15,8 +15,8 @@ import {
 import { AuthProvider } from 'app/providers/auth';
 import { Header } from 'widgets/header';
 import { IntlProvider } from 'app/providers/intl';
+import { MODAL_CONTAINER_ID } from 'shared/ui/modal';
 import { ThemeProvider } from 'app/providers/theme';
-import { clsx } from 'shared/utils/clsx';
 
 const interFont = Inter({
   style: 'normal',
@@ -34,8 +34,10 @@ export const metadata: Metadata = {
 };
 
 const Providers: FC<PropsWithChildren> = async (props) => {
-  const messages = await getMessages();
-  const profile = await getCurrentUser();
+  const [messages, profile] = await Promise.all([
+    getMessages(),
+    getCurrentUser(),
+  ]);
 
   return (
     <IntlProvider messages={messages}>
@@ -56,11 +58,17 @@ const RootLayout: FC<RootLayoutProps> = ({ params, children }) => {
 
   return (
     <html {...htmlAttributes}>
-      <body className={clsx(interFont.className)}>
+      <body className={interFont.className}>
         <Providers>
-          <div className="flex flex-col h-dvh">
+          <div className="flex flex-col h-dvh tablet:relative">
             <Header />
-            <main className="flex-auto">{children}</main>
+            <div className="flex flex-col flex-auto relative tablet:static">
+              <main className="flex-auto">{children}</main>
+              <div
+                className="absolute inset-0 empty:hidden z-50"
+                id={MODAL_CONTAINER_ID}
+              />
+            </div>
           </div>
         </Providers>
       </body>

@@ -10,13 +10,13 @@ export interface ResponseError {
   message: string;
 }
 
-export class ServerAPI {
-  private static async _createRequest<TResponse>(
-    url: string,
-    options?: RequestInit,
-  ) {
+export const serverFetch = {
+  async _createRequest<TResponse>(url: string, options?: RequestInit) {
     const headers = {
-      'Content-Type': 'application/json',
+      'Content-Type':
+        options?.body instanceof FormData
+          ? 'multipart/form-data'
+          : 'application/json',
       [API_KEY_HEADER_NAME]: cookies().get(API_KEY_COOKIE_NAME)?.value ?? '',
     };
 
@@ -32,19 +32,26 @@ export class ServerAPI {
     }
 
     return JSON.parse(bodyText) as TResponse;
-  }
+  },
 
-  static async POST<TResponse>(url: string, options?: RequestInit) {
-    return ServerAPI._createRequest<TResponse>(url, {
+  POST<TResponse>(url: string, options?: RequestInit) {
+    return serverFetch._createRequest<TResponse>(url, {
       ...options,
       method: 'POST',
     });
-  }
+  },
 
-  static async GET<TResponse>(url: string, options?: RequestInit) {
-    return ServerAPI._createRequest<TResponse>(url, {
+  GET<TResponse>(url: string, options?: RequestInit) {
+    return serverFetch._createRequest<TResponse>(url, {
       ...options,
       method: 'GET',
     });
-  }
-}
+  },
+
+  PATCH<TResponse>(url: string, options?: RequestInit) {
+    return serverFetch._createRequest<TResponse>(url, {
+      ...options,
+      method: 'PATCH',
+    });
+  },
+};

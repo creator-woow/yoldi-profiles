@@ -10,14 +10,21 @@ export interface TextFieldProps extends InputProps {
 }
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ className, helperText, ...otherProps }, ref) => {
+  ({ className, helperText, label, ...otherProps }, ref) => {
     return (
       <div className={className}>
         <FormControl {...otherProps}>
-          <Input
-            {...otherProps}
-            ref={ref}
-          />
+          <label className="flex flex-col">
+            {label && (
+              <span className="text-secondary font-medium mb-[5px] ml-[2px] self-start">
+                {label}
+              </span>
+            )}
+            <Input
+              {...otherProps}
+              ref={ref}
+            />
+          </label>
           {helperText && (
             <FormHelperText
               className="mt-1"

@@ -5,6 +5,7 @@
 @layer base {
   :root {
     --danger: #F00000;
+    --bg-overlay: rgb(0, 0, 0, 30%)
   }
 
   :root[data-theme="light"] {
@@ -89,6 +90,13 @@
     clip-path: inset(100%);
     clip: rect(0 0 0 0);
     overflow: hidden;
+  }
+
+  .centered-absolute {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .no-scrollbars {

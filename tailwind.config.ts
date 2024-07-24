@@ -19,6 +19,7 @@ const config: Config = {
       primary: 'var(--bg-primary)',
       secondary: 'var(--bg-secondary)',
       accent: 'var(--bg-accent)',
+      overlay: 'var(--bg-overlay)',
     },
     borderWidth: {
       1: '1px',

@@ -1,27 +1,72 @@
 'use client';
 
-import { FC } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 
-import { Profile, ProfileImage } from 'entities/profile';
+import { EditProfileData, EditProfileModal } from 'features/editProfile';
+import { Profile, ProfileImage, updateProfile } from 'entities/profile';
 import { Button } from 'shared/ui/button';
 import DeleteIcon from 'shared/icons/trash-bin.svg';
 import LogoutIcon from 'shared/icons/logout.svg';
 import PencilIcon from 'shared/icons/pencil.svg';
 import PictureIcon from 'shared/icons/picture.svg';
+import { RoutePath } from 'shared/lib/const';
 import UploadIcon from 'shared/icons/upload.svg';
+import { clientFetch } from 'shared/api/clientFetch';
 import { logoutUser } from 'features/entry';
+import { uploadImage } from 'shared/api/uploadImage';
 import { useAuth } from 'features/auth';
+import { useFetch } from 'shared/hooks/useFetch';
+import { useRouter } from 'shared/lib/navigation';
 import { useTranslations } from 'shared/hooks/useTranslations';
 
 interface ProfilePageProps {
   profile: Profile;
 }
 
-export const ProfilePage: FC<ProfilePageProps> = ({ profile }) => {
+export const ProfilePage: FC<ProfilePageProps> = ({
+  profile: prefetchedProfile,
+}) => {
+  const router = useRouter();
   const t = useTranslations();
   const auth = useAuth();
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const { data: fetchedProfile, mutate } = useFetch(
+    `/user/${prefetchedProfile.slug}`,
+    clientFetch.GET<Profile>,
+    {
+      fallbackData: prefetchedProfile,
+      revalidateOnMount: false,
+      revalidateOnFocus: false,
+      refreshInterval: 120000,
+    },
+  );
+
+  const profile = fetchedProfile ?? prefetchedProfile;
+  const openEdit = () => setIsEditOpen(true);
+  const closeEdit = () => setIsEditOpen(false);
 
   const isOwn = auth.profile?.slug === profile.slug;
+
+  const uploadCover = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append('file', file);
+    // todo: add image upload
+    await uploadImage(formData);
+  };
+
+  const handleDataChange = async (data: EditProfileData) => {
+    await mutate(updateProfile(data), {
+      optimisticData: { ...profile, ...data },
+      rollbackOnError: true,
+      populateCache: true,
+    });
+
+    if (data.slug !== profile.slug) {
+      router.replace(`${RoutePath.ProfilesRoot}/${data.slug}`);
+    }
+  };
 
   return (
     <div>
@@ -40,7 +85,7 @@ export const ProfilePage: FC<ProfilePageProps> = ({ profile }) => {
         />
         {isOwn && (
           <Button
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 invisible peer-checked:visible group-hover:visible"
+            className="centered-absolute invisible peer-checked:visible group-hover:visible"
             leftIcon={
               profile.cover ? (
                 <DeleteIcon
@@ -64,6 +109,12 @@ export const ProfilePage: FC<ProfilePageProps> = ({ profile }) => {
             {profile.cover
               ? t('edit_profile.delete_cover')
               : t('edit_profile.upload_cover')}
+            <input
+              className="absolute size-full opacity-0"
+              type="file"
+              accept="image/*"
+              onChange={uploadCover}
+            />
           </Button>
         )}
       </div>
@@ -79,19 +130,28 @@ export const ProfilePage: FC<ProfilePageProps> = ({ profile }) => {
             <span className="text-secondary">{profile.email}</span>
           </div>
           {isOwn && (
-            <Button
-              className="mt-[10px] tablet:ml-auto tablet:mt-0"
-              leftIcon={
-                <PencilIcon
-                  width={19}
-                  height={19}
-                />
-              }
-              variant="outlined"
-              size="md"
-            >
-              {t('edit_profile.edit')}
-            </Button>
+            <>
+              <Button
+                className="mt-[10px] tablet:ml-auto tablet:mt-0"
+                leftIcon={
+                  <PencilIcon
+                    width={19}
+                    height={19}
+                  />
+                }
+                variant="outlined"
+                size="md"
+                onClick={openEdit}
+              >
+                {t('edit_profile.edit')}
+              </Button>
+              <EditProfileModal
+                profile={profile}
+                isOpen={isEditOpen}
+                onChange={handleDataChange}
+                onClose={closeEdit}
+              />
+            </>
           )}
         </div>
         {profile.description && (

@@ -8,7 +8,7 @@ import EmailIcon from 'shared/icons/mail.svg';
 import { Form } from 'shared/ui/form';
 import { Link } from 'shared/ui/link';
 import { PasswordField } from 'features/entry/ui/PasswordField';
-import { ResponseError } from 'shared/api/http';
+import { ResponseError } from 'shared/api/serverFetch';
 import { RoutePath } from 'shared/lib/const';
 import { TextField } from 'shared/ui/textField';
 import { useForm } from 'shared/hooks/useForm';
