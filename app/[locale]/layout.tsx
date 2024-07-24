@@ -1,9 +1,10 @@
 import { FC, PropsWithChildren } from 'react';
 import { Inter } from 'next/font/google';
 import { Metadata } from 'next';
-
 import { cookies } from 'next/headers';
 import { getMessages } from 'next-intl/server';
+
+import { getCurrentUser } from 'entities/profile';
 
 import 'app/styles/globals.css';
 import {
@@ -34,10 +35,11 @@ export const metadata: Metadata = {
 
 const Providers: FC<PropsWithChildren> = async (props) => {
   const messages = await getMessages();
+  const profile = await getCurrentUser();
 
   return (
     <IntlProvider messages={messages}>
-      <AuthProvider profile={null}>
+      <AuthProvider profile={profile}>
         <ThemeProvider>{props.children}</ThemeProvider>
       </AuthProvider>
     </IntlProvider>

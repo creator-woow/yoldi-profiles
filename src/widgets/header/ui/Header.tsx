@@ -31,13 +31,16 @@ export const Header: FC = () => {
       </div>
       <div className="ml-auto text-md overflow-hidden">
         {profile ? (
-          <div className="flex items-center gap-[20px]">
+          <Link
+            className="flex items-center gap-[20px]"
+            href={`${RoutePath.ProfilesRoot}/${profile.slug}`}
+          >
             <div className="truncate">{profile.name}</div>
             <ProfileImage
               profile={profile}
               size="md"
             />
-          </div>
+          </Link>
         ) : (
           <Link
             className={buttonVariants({

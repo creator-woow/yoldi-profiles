@@ -1,3 +1,7 @@
+import { cookies } from 'next/headers';
+
+import { API_KEY_COOKIE_NAME, API_KEY_HEADER_NAME } from 'shared/config/auth';
+
 const SERVER_URL = process.env.SERVER_URL || 'http://localhost:3000';
 const API_URL = `${SERVER_URL}/api`;
 
@@ -13,6 +17,7 @@ export class ServerAPI {
   ) {
     const headers = {
       'Content-Type': 'application/json',
+      [API_KEY_HEADER_NAME]: cookies().get(API_KEY_COOKIE_NAME)?.value ?? '',
     };
 
     const res = await fetch(`${API_URL}${url}`, {

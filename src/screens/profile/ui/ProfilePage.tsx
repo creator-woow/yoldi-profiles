@@ -1,25 +1,27 @@
+'use client';
+
 import { FC } from 'react';
 
-import { ProfileImage, getProfile } from 'entities/profile';
+import { Profile, ProfileImage } from 'entities/profile';
 import { Button } from 'shared/ui/button';
 import DeleteIcon from 'shared/icons/trash-bin.svg';
 import LogoutIcon from 'shared/icons/logout.svg';
 import PencilIcon from 'shared/icons/pencil.svg';
 import PictureIcon from 'shared/icons/picture.svg';
 import UploadIcon from 'shared/icons/upload.svg';
-import { getTranslations } from 'shared/lib/intl';
+import { logoutUser } from 'features/entry';
+import { useAuth } from 'features/auth';
+import { useTranslations } from 'shared/hooks/useTranslations';
 
-export interface ProfilePageProps {
-  params: {
-    profileSlug: string;
-  };
+interface ProfilePageProps {
+  profile: Profile;
 }
 
-export const ProfilePage: FC<ProfilePageProps> = async ({ params }) => {
-  const [t, profile] = await Promise.all([
-    getTranslations(),
-    getProfile(params.profileSlug),
-  ]);
+export const ProfilePage: FC<ProfilePageProps> = ({ profile }) => {
+  const t = useTranslations();
+  const auth = useAuth();
+
+  const isOwn = auth.profile?.slug === profile.slug;
 
   return (
     <div>
@@ -36,32 +38,34 @@ export const ProfilePage: FC<ProfilePageProps> = async ({ params }) => {
           className="peer opacity-0 size-full desktop:hidden"
           type="checkbox"
         />
-        <Button
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 invisible peer-checked:visible group-hover:visible"
-          leftIcon={
-            profile.cover ? (
-              <DeleteIcon
-                width={17}
-                heigth={19}
+        {isOwn && (
+          <Button
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 invisible peer-checked:visible group-hover:visible"
+            leftIcon={
+              profile.cover ? (
+                <DeleteIcon
+                  width={17}
+                  heigth={19}
+                />
+              ) : (
+                <UploadIcon
+                  width={14}
+                  heigth={19}
+                />
+              )
+            }
+            rightIcon={
+              <PictureIcon
+                width={22}
+                heigth={17}
               />
-            ) : (
-              <UploadIcon
-                width={14}
-                heigth={19}
-              />
-            )
-          }
-          rightIcon={
-            <PictureIcon
-              width={22}
-              heigth={17}
-            />
-          }
-        >
-          {profile.cover
-            ? t('edit_profile.delete_cover')
-            : t('edit_profile.upload_cover')}
-        </Button>
+            }
+          >
+            {profile.cover
+              ? t('edit_profile.delete_cover')
+              : t('edit_profile.upload_cover')}
+          </Button>
+        )}
       </div>
       <div className="content-container text-md">
         <ProfileImage
@@ -74,36 +78,41 @@ export const ProfilePage: FC<ProfilePageProps> = async ({ params }) => {
             <h2 className="title-md">{profile.name}</h2>
             <span className="text-secondary">{profile.email}</span>
           </div>
+          {isOwn && (
+            <Button
+              className="mt-[10px] tablet:ml-auto tablet:mt-0"
+              leftIcon={
+                <PencilIcon
+                  width={19}
+                  height={19}
+                />
+              }
+              variant="outlined"
+              size="md"
+            >
+              {t('edit_profile.edit')}
+            </Button>
+          )}
+        </div>
+        {profile.description && (
+          <p className="text-md mt-[30px]">{profile.description}</p>
+        )}
+        {isOwn && (
           <Button
-            className="mt-[10px] tablet:ml-auto tablet:mt-0"
+            className="mt-[60px]"
             leftIcon={
-              <PencilIcon
+              <LogoutIcon
                 width={19}
                 height={19}
               />
             }
             variant="outlined"
             size="md"
+            onClick={() => logoutUser()}
           >
-            {t('edit_profile.edit')}
+            {t('entry.logout')}
           </Button>
-        </div>
-        {profile.description && (
-          <p className="text-md mt-[30px]">{profile.description}</p>
         )}
-        <Button
-          className="mt-[60px]"
-          leftIcon={
-            <LogoutIcon
-              width={19}
-              height={19}
-            />
-          }
-          variant="outlined"
-          size="md"
-        >
-          {t('entry.logout')}
-        </Button>
       </div>
     </div>
   );

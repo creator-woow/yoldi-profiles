@@ -96,7 +96,7 @@ export const RegistrationPage: FC = () => {
               variant="accent"
               size="xl"
               textColor="white"
-              disabled={formState.isSubmitting}
+              disabled={formState.isSubmitting || !formState.isValid}
               type="submit"
             >
               {t('entry.create_account')}

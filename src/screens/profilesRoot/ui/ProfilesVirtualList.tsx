@@ -44,7 +44,6 @@ export const ProfilesVirtualList: FC<ProfilesVirtualListProps> = ({
       {({ height, width }) => (
         <VirtualList
           overscanCount={5}
-          className="no-scrollbars"
           itemSize={70}
           height={height}
           itemCount={profiles.length}
