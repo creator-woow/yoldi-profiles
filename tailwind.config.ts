@@ -12,12 +12,8 @@ const config: Config = {
       lg: ['18px', '25px'],
     },
     screens: {
-      tablet: {
-        raw: '(min-width: 768px) and (min-height:960px)',
-      },
-      desktop: {
-        raw: '(min-width: 1024px) and (min-height:768px)',
-      },
+      tablet: '768px',
+      desktop: '1025px',
     },
     backgroundColor: {
       primary: 'var(--bg-primary)',

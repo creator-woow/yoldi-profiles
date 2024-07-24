@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+
 import { ProfilesRootPage } from 'screens/profilesRoot';
 import { getTranslations } from 'shared/lib/intl';
 

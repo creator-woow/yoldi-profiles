@@ -10,8 +10,7 @@ interface ModalProps extends PropsWithChildren {
   onClose?: () => void;
 }
 
-export const Modal: FC<ModalProps> = ({ children, isOpen, onClose }) => {
-  // todo: fix document is not defined error
+const Modal: FC<ModalProps> = ({ children, isOpen, onClose }) => {
   const container = document.getElementById(MODAL_CONTAINER_ID);
 
   useEffect(() => {
@@ -35,3 +34,5 @@ export const Modal: FC<ModalProps> = ({ children, isOpen, onClose }) => {
 
   return isOpen && container && createPortal(content, container);
 };
+
+export default Modal;

@@ -6,6 +6,10 @@
   outline-color: #d8d93b;
 }
 
+* {
+  scrollbar-width: thin;
+}
+
 input[type=file]::-webkit-file-upload-button {
   visibility: hidden;
 }

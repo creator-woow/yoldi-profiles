@@ -1,1 +1,1 @@
-export { ProfilesRootPage } from './ui/ProfilesRootPage';
+export { ProfilesRootPageProvider as ProfilesRootPage } from './ui/ProfilesRootPageProvider';

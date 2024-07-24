@@ -4,6 +4,7 @@ import { ChangeEvent, FC, useState } from 'react';
 
 import { EditProfileData, EditProfileModal } from 'features/editProfile';
 import { Profile, ProfileImage, updateProfile } from 'entities/profile';
+import { refreshSession, useAuth } from 'features/auth';
 import { Button } from 'shared/ui/button';
 import DeleteIcon from 'shared/icons/trash-bin.svg';
 import LogoutIcon from 'shared/icons/logout.svg';
@@ -14,7 +15,6 @@ import UploadIcon from 'shared/icons/upload.svg';
 import { clientFetch } from 'shared/api/clientFetch';
 import { logoutUser } from 'features/entry';
 import { uploadImage } from 'shared/api/uploadImage';
-import { useAuth } from 'features/auth';
 import { useFetch } from 'shared/hooks/useFetch';
 import { useRouter } from 'shared/lib/navigation';
 import { useTranslations } from 'shared/hooks/useTranslations';
@@ -30,18 +30,16 @@ export const ProfilePage: FC<ProfilePageProps> = ({
   const t = useTranslations();
   const auth = useAuth();
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const { data: fetchedProfile, mutate } = useFetch(
+  const { data: profile, mutate } = useFetch(
     `/user/${prefetchedProfile.slug}`,
     clientFetch.GET<Profile>,
     {
       fallbackData: prefetchedProfile,
       revalidateOnMount: false,
       revalidateOnFocus: false,
-      refreshInterval: 120000,
     },
   );
 
-  const profile = fetchedProfile ?? prefetchedProfile;
   const openEdit = () => setIsEditOpen(true);
   const closeEdit = () => setIsEditOpen(false);
 
@@ -62,6 +60,9 @@ export const ProfilePage: FC<ProfilePageProps> = ({
       rollbackOnError: true,
       populateCache: true,
     });
+
+    // todo: After slug change, edit buttons hidden for a second, fix
+    await refreshSession();
 
     if (data.slug !== profile.slug) {
       router.replace(`${RoutePath.ProfilesRoot}/${data.slug}`);
@@ -85,7 +86,7 @@ export const ProfilePage: FC<ProfilePageProps> = ({
         />
         {isOwn && (
           <Button
-            className="centered-absolute invisible peer-checked:visible group-hover:visible"
+            className="centered-absolute opacity-0 peer-checked:opacity-100 group-hover:opacity-100 transition-opacity"
             leftIcon={
               profile.cover ? (
                 <DeleteIcon
@@ -123,6 +124,7 @@ export const ProfilePage: FC<ProfilePageProps> = ({
           className="relative -mt-[50px]"
           size="lg"
           profile={profile}
+          isEditable={isOwn}
         />
         <div className="mt-[35px] flex flex-col items-start tablet:flex-row tablet:items-baseline">
           <div className="flex flex-col gap-[15px]">

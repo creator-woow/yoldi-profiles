@@ -13,11 +13,11 @@ import {
   Theme,
 } from 'shared/config/theme';
 import { AuthProvider } from 'app/providers/auth';
-import { clsx } from 'shared/utils/clsx';
 import { Header } from 'widgets/header';
 import { IntlProvider } from 'app/providers/intl';
 import { MODAL_CONTAINER_ID } from 'shared/ui/modal';
 import { ThemeProvider } from 'app/providers/theme';
+import { clsx } from 'shared/utils/clsx';
 
 const interFont = Inter({
   style: 'normal',
