@@ -17,7 +17,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <div
         className={clsx(
           className,
-          'flex items-center border-1 border-primary focus-within:border-accent rounded-md overflow-hidden',
+          'flex items-center bg-primary border-1 border-primary focus-within:border-accent rounded-md overflow-hidden',
           { 'border-danger text-danger': error },
         )}
       >
@@ -33,7 +33,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           autoComplete={autoComplete}
           className={clsx(
-            'px-[15px] py-[12px] flex-auto focus-visible:outline-none placeholder:text-placeholder',
+            'px-[15px] py-[12px] flex-auto bg-transparent focus-visible:outline-none placeholder:text-placeholder',
             { 'placeholder:text-danger': error },
           )}
         />

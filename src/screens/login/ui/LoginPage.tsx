@@ -23,6 +23,7 @@ export const LoginPage: FC = () => {
   const dataSchema = LoginDataSchema(t);
   const { handleSubmit, register, formState, setError } = useForm<LoginData>({
     resolver: zodResolver(dataSchema),
+    mode: 'onChange',
   });
   const onSubmit = handleSubmit((data) =>
     loginUser(data)
@@ -54,6 +55,7 @@ export const LoginPage: FC = () => {
             <div className="flex flex-col gap-[15px]">
               <TextField
                 {...register('email')}
+                autoFocus
                 type="email"
                 placeholder={t('entry.email_field')}
                 error={!!formState.errors.email || !!formState.errors.root}
@@ -79,7 +81,6 @@ export const LoginPage: FC = () => {
               className="mt-[25px]"
               variant="accent"
               size="xl"
-              textColor="white"
               disabled={formState.isSubmitting || !formState.isValid}
               type="submit"
             >

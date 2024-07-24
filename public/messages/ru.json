@@ -1,8 +1,7 @@
 {
   "form_validation": {
     "field_required": "Поле обязательно для заполнения",
-    "invalid_email": "Введите корректный email",
-    "min_length": "Минимальная длина поля {count} {count, plural, =1 {символ} =2 {символа} =other {символов}"
+    "invalid_email": "Введите корректный email"
   },
   "header": {
     "motto": "Разрабатываем и запускаем сложные веб проекты"

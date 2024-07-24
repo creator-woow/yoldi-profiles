@@ -12,14 +12,19 @@ const config: Config = {
       lg: ['18px', '25px'],
     },
     screens: {
-      tablet: '768px',
-      desktop: '1024px',
+      tablet: {
+        raw: '(min-width: 768px) and (min-height:960px)',
+      },
+      desktop: {
+        raw: '(min-width: 1024px) and (min-height:768px)',
+      },
     },
     backgroundColor: {
       primary: 'var(--bg-primary)',
       secondary: 'var(--bg-secondary)',
       accent: 'var(--bg-accent)',
       overlay: 'var(--bg-overlay)',
+      transparent: 'transparent',
     },
     borderWidth: {
       1: '1px',
@@ -35,6 +40,7 @@ const config: Config = {
       placeholder: 'var(--text-placeholder)',
       white: '#ffffff',
       danger: 'var(--danger)',
+      'bg-accent-contrast': 'var(--text-bg-accent-contrast)',
     },
     borderRadius: {
       md: '5px',

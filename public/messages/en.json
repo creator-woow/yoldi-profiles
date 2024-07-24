@@ -1,45 +1,44 @@
 {
   "form_validation": {
-    "field_required": "Поле обязательно для заполнения",
-    "invalid_email": "Введите корректный email",
-    "min_length": "Минимальная длина поля {count} {count, plural, =1 {символ} =2 {символа} =other {символов}"
+    "field_required": "Field is required",
+    "invalid_email": "Enter valid email"
   },
   "header": {
-    "motto": "Разрабатываем и запускаем сложные веб проекты"
+    "motto": "Developing and launching complex web projects"
   },
   "entry": {
-    "name_field": "Имя",
+    "name_field": "Name",
     "email_field": "E-mail",
-    "password_field": "Пароль",
-    "show_password": "Показать пароль",
-    "hide_password": "Скрыть пароль",
-    "create_account": "Создать аккаунт",
-    "login": "Войти",
-    "logout": "Выйти"
+    "password_field": "Password",
+    "show_password": "Show password",
+    "hide_password": "Hide password",
+    "create_account": "Create account",
+    "login": "Login",
+    "logout": "Logout"
   },
   "registration_page": {
-    "title": "Регистрация \n в Yoldi Agency",
-    "if_account_exists": "Уже есть аккаунт? <link>Войти</link>"
+    "title": "Signup \n at Yoldi Agency",
+    "if_account_exists": "Already have an account? <link>Login</link>"
   },
   "login_page": {
-    "title": "Вход в Yoldi Agency",
-    "if_no_account": "Еще нет аккаунта? <link>Зарегистрироваться</link>"
+    "title": "Login at Yoldi Agency",
+    "if_no_account": "Don't have an account yet? <link>Sign up</link>"
   },
   "profiles_root_page": {
-    "title": "Список аккаунтов"
+    "title": "List of accounts"
   },
   "profile_page": {
-    "title": "Страница пользователя \"{name}\""
+    "title": "User page \"{name}\""
   },
   "edit_profile": {
-    "upload_cover": "Загрузить",
-    "delete_cover": "Удалить",
-    "title": "Редактировать \n профиль",
-    "edit": "Редактировать",
-    "name": "Имя",
-    "address": "Адрес профиля",
-    "description": "Описание",
-    "cancel": "Отмена",
-    "save": "Сохранить"
+    "upload_cover": "Upload",
+    "delete_cover": "Delete",
+    "title": "Edit \n profile",
+    "edit": "Edit",
+    "name": "Name",
+    "address": "Profile address",
+    "description": "Description",
+    "cancel": "Cancel",
+    "save": "Save"
   }
 }

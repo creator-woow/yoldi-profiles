@@ -29,6 +29,7 @@ export const RegistrationPage: FC = () => {
   const { handleSubmit, register, formState, setError } =
     useForm<RegistrationData>({
       resolver: zodResolver(dataSchema),
+      mode: 'onChange',
     });
 
   const footerText = t.rich('registration_page.if_account_exists', {
@@ -61,6 +62,7 @@ export const RegistrationPage: FC = () => {
             <div className="flex flex-col gap-[15px]">
               <TextField
                 {...register('name')}
+                autoFocus
                 placeholder={t('entry.name_field')}
                 error={!!formState.errors.name}
                 helperText={formState.errors.name?.message}
@@ -95,7 +97,6 @@ export const RegistrationPage: FC = () => {
               className="mt-[25px]"
               variant="accent"
               size="xl"
-              textColor="white"
               disabled={formState.isSubmitting || !formState.isValid}
               type="submit"
             >

@@ -30,6 +30,7 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({
   const schema = EditProfileDataSchema(t);
   const { register, formState, handleSubmit } = useForm<EditProfileData>({
     resolver: zodResolver(schema),
+    mode: 'onChange',
     defaultValues: {
       name: profile.name,
       slug: profile.slug,
@@ -55,6 +56,7 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({
           <div className="flex flex-col gap-[15px]">
             <TextField
               {...register('name')}
+              autoFocus
               error={!!formState.errors.name}
               label={t('edit_profile.name')}
               helperText={formState.errors.name?.message}
@@ -87,13 +89,8 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({
               className="w-1/2"
               variant="accent"
               size="xl"
-              textColor="white"
               type="submit"
-              disabled={
-                formState.isSubmitting ||
-                !formState.isValid ||
-                !formState.isDirty
-              }
+              disabled={formState.isSubmitting || !formState.isValid}
             >
               {t('edit_profile.save')}
             </Button>

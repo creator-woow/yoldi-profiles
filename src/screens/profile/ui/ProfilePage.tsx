@@ -110,7 +110,7 @@ export const ProfilePage: FC<ProfilePageProps> = ({
               ? t('edit_profile.delete_cover')
               : t('edit_profile.upload_cover')}
             <input
-              className="absolute size-full opacity-0"
+              className="absolute size-full opacity-0 cursor-pointer"
               type="file"
               accept="image/*"
               onChange={uploadCover}

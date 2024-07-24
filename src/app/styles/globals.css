@@ -2,21 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --danger: #F00000;
-    --bg-overlay: rgb(0, 0, 0, 30%)
-  }
+*:focus-visible {
+  outline-color: #d8d93b;
+}
 
+input[type=file]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+@layer base {
   :root[data-theme="light"] {
     --bg-primary: #ffffff;
     --bg-secondary: #F3F3F3;
     --bg-accent: #000000;
+    --bg-overlay: rgb(0, 0, 0, 30%);
     --border-primary: #D4D4D4;
     --border-accent: #838383;
     --text-primary: #000000;
     --text-secondary: #838383;
     --text-placeholder: #838383;
+    --text-bg-accent-contrast: #ffffff;
+    --danger: #F00000;
   }
 
   @media (prefers-color-scheme: light) {
@@ -24,35 +30,44 @@
       --bg-primary: #ffffff;
       --bg-secondary: #F3F3F3;
       --bg-accent: #000000;
+      --bg-overlay: rgb(0, 0, 0, 30%);
       --border-primary: #D4D4D4;
       --border-accent: #838383;
       --text-primary: #000000;
       --text-secondary: #838383;
       --text-placeholder: #838383;
+      --text-bg-accent-contrast: #ffffff;
+      --danger: #F00000;
     }
   }
 
   :root[data-theme="dark"] {
-    --bg-primary: #ffffff;
-    --bg-secondary: #F3F3F3;
-    --bg-accent: #000000;
-    --border-primary: #D4D4D4;
-    --border-accent: #838383;
-    --text-primary: #000000;
-    --text-secondary: #838383;
-    --text-placeholder: #838383;
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #0a0a0a;
+    --bg-accent: #ededed;
+    --bg-overlay: rgb(0, 0, 0, 60%);
+    --border-primary: #656565;
+    --border-accent: #ffffff;
+    --text-primary: #dcdbdb;
+    --text-secondary: #a1a1a1;
+    --text-placeholder: #888888;
+    --text-bg-accent-contrast: #0a0a0a;
+    --danger: #a80000;
   }
 
   @media (prefers-color-scheme: dark) {
     :root[data-theme="system"] {
-      --bg-primary: #ffffff;
-      --bg-secondary: #F3F3F3;
-      --bg-accent: #000000;
-      --border-primary: #D4D4D4;
-      --border-accent: #838383;
-      --text-primary: #000000;
-      --text-secondary: #838383;
-      --text-placeholder: #838383;
+      --bg-primary: #000000;
+      --bg-secondary: #0a0a0a;
+      --bg-accent: #ededed;
+      --bg-overlay: rgb(0, 0, 0, 60%);
+      --border-primary: #656565;
+      --border-accent: #ffffff;
+      --text-primary: #dcdbdb;
+      --text-secondary: #a1a1a1;
+      --text-placeholder: #888888;
+      --text-bg-accent-contrast: #0a0a0a;
+      --danger: #a80000;
     }
   }
 }

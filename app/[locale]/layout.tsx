@@ -13,6 +13,7 @@ import {
   Theme,
 } from 'shared/config/theme';
 import { AuthProvider } from 'app/providers/auth';
+import { clsx } from 'shared/utils/clsx';
 import { Header } from 'widgets/header';
 import { IntlProvider } from 'app/providers/intl';
 import { MODAL_CONTAINER_ID } from 'shared/ui/modal';
@@ -58,7 +59,7 @@ const RootLayout: FC<RootLayoutProps> = ({ params, children }) => {
 
   return (
     <html {...htmlAttributes}>
-      <body className={interFont.className}>
+      <body className={clsx(interFont.className, 'bg-primary text-primary')}>
         <Providers>
           <div className="flex flex-col h-dvh tablet:relative">
             <Header />

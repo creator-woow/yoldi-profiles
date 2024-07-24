@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, ReactNode, forwardRef } from 'react';
 import { VariantProps, tv } from 'shared/utils/tv';
 
 export const buttonVariants = tv({
-  base: 'inline-block rounded-md focus-visible:outline-none focus-visible:opacity-70 hover:opacity-80 disabled:opacity-60',
+  base: 'inline-block rounded-md focus-visible:outline-none focus-visible:opacity-70 hover:opacity-80 disabled:opacity-60 disabled:cursor-not-allowed',
   variants: {
     variant: {
       clear: 'bg-transparent',
@@ -11,7 +11,6 @@ export const buttonVariants = tv({
     },
     textColor: {
       primary: 'text-primary',
-      white: 'text-white',
     },
     size: {
       md: 'py-[7px] px-[33px]',
@@ -22,7 +21,10 @@ export const buttonVariants = tv({
       false: '',
     },
   },
-  compoundVariants: [{ variant: 'clear', class: 'p-0 text-inherit' }],
+  compoundVariants: [
+    { variant: 'clear', class: 'p-0 text-inherit' },
+    { variant: 'accent', class: 'text-bg-accent-contrast' },
+  ],
   defaultVariants: {
     textColor: 'primary',
     variant: 'outlined',
