@@ -2,7 +2,7 @@ export const enum Theme {
   light = 'light',
   dark = 'dark',
   system = 'system',
-  default = Theme.system,
+  default = Theme.light,
 }
 
 export const THEMES = [Theme.light, Theme.dark, Theme.system] as const;
