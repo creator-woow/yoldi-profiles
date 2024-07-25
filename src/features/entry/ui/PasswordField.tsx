@@ -32,9 +32,9 @@ export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(
             heigth={21}
           />
         }
-        inputEnd={
+        afterInput={
           <Button
-            className={clsx('h-full px-[20px] py-[10px] text-secondary', {
+            className={clsx('px-[20px] py-[10px] text-secondary', {
               'text-danger': props.error,
             })}
             title={

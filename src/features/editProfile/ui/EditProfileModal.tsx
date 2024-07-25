@@ -43,6 +43,13 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({
     onClose();
   });
 
+  const beforeAddressInput = (
+    <div className="flex items-center text-secondary bg-secondary border-r-1 border-inherit px-[20px] max-w-[50%]">
+      <span className="truncate">{window.location.host}/</span>
+    </div>
+  );
+
+  // todo: modal can be higher than viewport, handle
   return (
     <Modal
       isOpen={isOpen}
@@ -63,12 +70,16 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({
             />
             <TextField
               {...register('slug')}
+              beforeInput={beforeAddressInput}
               error={!!formState.errors.slug}
               label={t('edit_profile.address')}
               helperText={formState.errors.slug?.message}
             />
             <TextField
               {...register('description')}
+              multiline
+              minRows={5}
+              maxRows={10}
               error={!!formState.errors.description}
               label={t('edit_profile.description')}
               helperText={formState.errors.description?.message}

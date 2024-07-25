@@ -14,6 +14,14 @@ input[type=file]::-webkit-file-upload-button {
   visibility: hidden;
 }
 
+textarea {
+  resize: none;
+}
+
+textarea::-webkit-resizer {
+  display: none;
+}
+
 @layer base {
   :root[data-theme="light"] {
     --bg-primary: #ffffff;

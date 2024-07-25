@@ -29,6 +29,7 @@ const config: Config = {
       primary: 'var(--border-primary)',
       accent: 'var(--border-accent)',
       danger: 'var(--danger)',
+      inherit: 'inherit',
     },
     textColor: {
       primary: 'var(--text-primary)',
