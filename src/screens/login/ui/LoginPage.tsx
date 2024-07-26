@@ -8,7 +8,6 @@ import EmailIcon from 'shared/icons/mail.svg';
 import { Form } from 'shared/ui/form';
 import { Link } from 'shared/ui/link';
 import { PasswordField } from 'features/entry/ui/PasswordField';
-import { ResponseError } from 'shared/api/serverFetch';
 import { RoutePath } from 'shared/lib/const';
 import { TextField } from 'shared/ui/textField';
 import { useForm } from 'shared/hooks/useForm';
@@ -25,12 +24,14 @@ export const LoginPage: FC = () => {
     resolver: zodResolver(dataSchema),
     mode: 'onChange',
   });
+
   const onSubmit = handleSubmit((data) =>
-    loginUser(data)
-      .then(() => router.push(RoutePath.ProfilesRoot))
-      .catch((error: ResponseError) =>
-        setError('root', { message: error.message }),
-      ),
+    loginUser(data).then((responseError) => {
+      if (!responseError) {
+        return router.push(RoutePath.ProfilesRoot);
+      }
+      setError('root', { message: responseError.message });
+    }),
   );
 
   const footerText = t.rich('login_page.if_no_account', {

@@ -12,7 +12,6 @@ import EmailIcon from 'shared/icons/mail.svg';
 import { Form } from 'shared/ui/form';
 import { Link } from 'shared/ui/link';
 import { PasswordField } from 'features/entry/ui/PasswordField';
-import { ResponseError } from 'shared/api/serverFetch';
 import { RoutePath } from 'shared/lib/const';
 import { TextField } from 'shared/ui/textField';
 import UserIcon from 'shared/icons/user.svg';
@@ -44,11 +43,12 @@ export const RegistrationPage: FC = () => {
   });
 
   const onSubmit = handleSubmit((data) =>
-    registerUser(data)
-      .then(() => router.push(RoutePath.ProfilesRoot))
-      .catch((error: ResponseError) => {
-        setError('email', { message: error.message });
-      }),
+    registerUser(data).then((responseError) => {
+      if (!responseError) {
+        return router.push(RoutePath.ProfilesRoot);
+      }
+      setError('email', { message: responseError.message });
+    }),
   );
 
   return (

@@ -9,10 +9,10 @@ import { Form } from 'shared/ui/form';
 import { Modal } from 'shared/ui/modal';
 import { Profile } from 'entities/profile';
 import { TextField } from 'shared/ui/textField';
+import { clsx } from 'shared/utils/clsx';
 import { useForm } from 'shared/hooks/useForm';
 import { useTranslations } from 'shared/hooks/useTranslations';
 import { zodResolver } from 'shared/lib/validator';
-import { clsx } from 'shared/utils/clsx';
 
 interface EditProfileModalProps extends PropsWithChildren {
   profile: Profile;

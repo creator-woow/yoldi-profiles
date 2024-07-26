@@ -1,8 +1,8 @@
-// todo: fix types errors
+// todo: fix ref types errors
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react';
 
 import { Input, InputProps } from 'shared/ui/input';
 import { FormControl } from 'shared/ui/formControl';
@@ -26,33 +26,40 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       multiline,
       minRows,
       maxRows,
+      id: idProp,
       ...otherProps
     },
     ref,
   ) => {
+    const innerId = useId();
+    const id = idProp ?? innerId;
+
     return (
       <div className={className}>
         <FormControl {...otherProps}>
-          <label className="flex flex-col">
-            {label && (
-              <span className="text-secondary font-medium mb-[5px] ml-[2px] self-start">
-                {label}
-              </span>
-            )}
-            {multiline ? (
-              <TextArea
-                {...otherProps}
-                ref={ref}
-                minRows={minRows}
-                maxRows={maxRows}
-              />
-            ) : (
-              <Input
-                {...otherProps}
-                ref={ref}
-              />
-            )}
-          </label>
+          {label && (
+            <label
+              className="text-secondary font-medium mb-[5px] ml-[2px] cursor-pointer"
+              htmlFor={id}
+            >
+              {label}
+            </label>
+          )}
+          {multiline ? (
+            <TextArea
+              {...otherProps}
+              ref={ref}
+              id={id}
+              minRows={minRows}
+              maxRows={maxRows}
+            />
+          ) : (
+            <Input
+              {...otherProps}
+              ref={ref}
+              id={id}
+            />
+          )}
           {helperText && (
             <FormHelperText
               className="mt-1"
