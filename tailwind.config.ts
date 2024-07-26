@@ -7,7 +7,7 @@ const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     fontSize: {
-      sm: ['12px', '19px'],
+      sm: ['13px', '19px'],
       md: ['16px', '25px'],
       lg: ['18px', '25px'],
     },

@@ -59,7 +59,7 @@ export const ProfilesVirtualList: FC<ProfilesVirtualListProps> = ({
     );
   };
 
-  const debounceIndexSave = useDebouncedCallback(saveVisibleIndex, 400);
+  const debounceIndexSave = useDebouncedCallback(saveVisibleIndex, 200);
 
   const handleItemsRender = (firstVisibleIndex: number) => {
     debounceIndexSave.cancel();

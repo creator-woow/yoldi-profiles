@@ -127,7 +127,7 @@ export const ProfilePage: FC<ProfilePageProps> = ({
           isEditable={isOwn}
         />
         <div className="mt-[35px] flex flex-col items-start tablet:flex-row tablet:items-baseline">
-          <div className="flex flex-col gap-[15px]">
+          <div className="flex flex-col gap-[15px] overflow-hidden w-full">
             <h2 className="title-md truncate">{profile.name}</h2>
             <span className="text-secondary truncate">{profile.email}</span>
           </div>
@@ -157,11 +157,13 @@ export const ProfilePage: FC<ProfilePageProps> = ({
           )}
         </div>
         {profile.description && (
-          <p className="text-md mt-[30px] truncate">{profile.description}</p>
+          <p className="text-md mt-[30px] mb-[60px] overflow-hidden text-ellipsis">
+            {profile.description}
+          </p>
         )}
         {isOwn && (
           <Button
-            className="mt-[60px]"
+            className="mb-10"
             leftIcon={
               <LogoutIcon
                 width={19}

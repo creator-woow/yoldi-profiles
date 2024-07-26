@@ -61,10 +61,10 @@ const RootLayout: FC<RootLayoutProps> = ({ params, children }) => {
     <html {...htmlAttributes}>
       <body className={clsx(interFont.className, 'bg-primary text-primary')}>
         <Providers>
-          <div className="flex flex-col h-dvh tablet:relative">
+          <div className="flex flex-col h-dvh">
             <Header />
-            <div className="flex flex-col flex-auto relative tablet:static">
-              <main className="flex-auto">{children}</main>
+            <div className="flex flex-col flex-auto overflow-hidden relative">
+              <main className="flex-auto overflow-auto">{children}</main>
               <div
                 className="absolute inset-0 empty:hidden z-50"
                 id={MODAL_CONTAINER_ID}

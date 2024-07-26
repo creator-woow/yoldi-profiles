@@ -9,7 +9,6 @@ import { Form } from 'shared/ui/form';
 import { Modal } from 'shared/ui/modal';
 import { Profile } from 'entities/profile';
 import { TextField } from 'shared/ui/textField';
-import { clsx } from 'shared/utils/clsx';
 import { useForm } from 'shared/hooks/useForm';
 import { useTranslations } from 'shared/hooks/useTranslations';
 import { zodResolver } from 'shared/lib/validator';
@@ -52,67 +51,63 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({
 
   return (
     <Modal
+      className="p-[30px] tablet:w-[600px]"
       isOpen={isOpen}
       onClose={onClose}
     >
-      <div
-        className={clsx(
-          'centered-absolute bg-primary p-[30px] size-full',
-          'tablet:w-[600px] tablet:max-h-[98dvh] overflow-auto tablet:h-auto tablet:rounded-md tablet:border-1 tablet:border-primary',
-        )}
-      >
-        <h2 className="title-md mb-[25px] whitespace-pre-line tablet:whitespace-nowrap">
-          {t('edit_profile.title')}
-        </h2>
-        <Form onSubmit={submit}>
-          <div className="flex flex-col gap-[15px]">
-            <TextField
-              {...register('name')}
-              autoFocus
-              error={!!formState.errors.name}
-              label={t('edit_profile.name')}
-              helperText={formState.errors.name?.message}
-            />
-            <TextField
-              {...register('slug')}
-              beforeInput={beforeAddressInput}
-              error={!!formState.errors.slug}
-              label={t('edit_profile.address')}
-              helperText={formState.errors.slug?.message}
-            />
-            <TextField
-              {...register('description')}
-              multiline
-              minRows={5}
-              maxRows={10}
-              error={!!formState.errors.description}
-              label={t('edit_profile.description')}
-              helperText={formState.errors.description?.message}
-            />
-          </div>
-          <div className="flex mt-[83px] gap-[10px] tablet:mt-[25px]">
-            <Button
-              className="w-1/2"
-              variant="outlined"
-              size="xl"
-              textColor="primary"
-              type="button"
-              onClick={onClose}
-            >
-              {t('edit_profile.cancel')}
-            </Button>
-            <Button
-              className="w-1/2"
-              variant="accent"
-              size="xl"
-              type="submit"
-              disabled={formState.isSubmitting || !formState.isValid}
-            >
-              {t('edit_profile.save')}
-            </Button>
-          </div>
-        </Form>
-      </div>
+      <h2 className="title-md mb-[25px] whitespace-pre-line tablet:whitespace-nowrap">
+        {t('edit_profile.title')}
+      </h2>
+      <Form onSubmit={submit}>
+        <div className="flex flex-col gap-[15px]">
+          <TextField
+            {...register('name')}
+            autoFocus
+            error={!!formState.errors.name}
+            label={t('edit_profile.name')}
+            helperText={formState.errors.name?.message}
+          />
+          <TextField
+            {...register('slug')}
+            beforeInput={beforeAddressInput}
+            error={!!formState.errors.slug}
+            label={t('edit_profile.address')}
+            helperText={formState.errors.slug?.message}
+          />
+          <TextField
+            {...register('description')}
+            multiline
+            minRows={5}
+            maxRows={10}
+            error={!!formState.errors.description}
+            label={t('edit_profile.description')}
+            helperText={formState.errors.description?.message}
+          />
+        </div>
+        <div className="flex mt-[83px] gap-[10px] tablet:mt-[25px]">
+          <Button
+            className="w-1/2"
+            variant="outlined"
+            size="xl"
+            textColor="primary"
+            type="button"
+            onClick={onClose}
+          >
+            {t('edit_profile.cancel')}
+          </Button>
+          <Button
+            className="w-1/2"
+            variant="accent"
+            size="xl"
+            type="submit"
+            disabled={
+              formState.isSubmitting || !formState.isValid || !formState.isDirty
+            }
+          >
+            {t('edit_profile.save')}
+          </Button>
+        </div>
+      </Form>
     </Modal>
   );
 };
