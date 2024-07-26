@@ -12,6 +12,7 @@ import { TextField } from 'shared/ui/textField';
 import { useForm } from 'shared/hooks/useForm';
 import { useTranslations } from 'shared/hooks/useTranslations';
 import { zodResolver } from 'shared/lib/validator';
+import { clsx } from 'shared/utils/clsx';
 
 interface EditProfileModalProps extends PropsWithChildren {
   profile: Profile;
@@ -49,13 +50,17 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({
     </div>
   );
 
-  // todo: modal can be higher than viewport, handle
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
     >
-      <div className="centered-absolute bg-primary p-[30px] size-full tablet:w-[600px] tablet:h-auto tablet:rounded-md tablet:border-1 tablet:border-primary">
+      <div
+        className={clsx(
+          'centered-absolute bg-primary p-[30px] size-full',
+          'tablet:w-[600px] tablet:max-h-[98dvh] overflow-auto tablet:h-auto tablet:rounded-md tablet:border-1 tablet:border-primary',
+        )}
+      >
         <h2 className="title-md mb-[25px] whitespace-pre-line tablet:whitespace-nowrap">
           {t('edit_profile.title')}
         </h2>

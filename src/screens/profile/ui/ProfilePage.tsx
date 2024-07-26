@@ -128,8 +128,8 @@ export const ProfilePage: FC<ProfilePageProps> = ({
         />
         <div className="mt-[35px] flex flex-col items-start tablet:flex-row tablet:items-baseline">
           <div className="flex flex-col gap-[15px]">
-            <h2 className="title-md">{profile.name}</h2>
-            <span className="text-secondary">{profile.email}</span>
+            <h2 className="title-md truncate">{profile.name}</h2>
+            <span className="text-secondary truncate">{profile.email}</span>
           </div>
           {isOwn && (
             <>
@@ -157,7 +157,7 @@ export const ProfilePage: FC<ProfilePageProps> = ({
           )}
         </div>
         {profile.description && (
-          <p className="text-md mt-[30px]">{profile.description}</p>
+          <p className="text-md mt-[30px] truncate">{profile.description}</p>
         )}
         {isOwn && (
           <Button

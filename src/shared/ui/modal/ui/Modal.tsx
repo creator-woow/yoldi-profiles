@@ -23,7 +23,7 @@ const Modal: FC<ModalProps> = ({ children, isOpen, onClose }) => {
   }, [isOpen, onClose]);
 
   const content = (
-    <div className="absolute size-full">
+    <div className="absolute size-full overflow-hidden">
       <div
         className="absolute size-full bg-overlay"
         onClick={onClose}
