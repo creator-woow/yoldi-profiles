@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 *:focus-visible {
-  outline-color: #d8d93b;
+  outline-color: #849436FF;
 }
 
 * {

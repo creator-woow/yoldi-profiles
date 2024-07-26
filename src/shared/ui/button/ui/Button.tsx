@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, ReactNode, forwardRef } from 'react';
 import { VariantProps, tv } from 'shared/utils/tv';
 
 export const buttonVariants = tv({
-  base: 'inline-block rounded-md focus-visible:outline-none focus-visible:opacity-70 hover:opacity-80 disabled:opacity-60 disabled:cursor-not-allowed',
+  base: 'inline-block rounded-md focus-visible:opacity-70 hover:opacity-70 disabled:opacity-60 disabled:cursor-not-allowed',
   variants: {
     variant: {
       clear: 'bg-transparent',
