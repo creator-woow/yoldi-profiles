@@ -14,7 +14,7 @@ export const getProfile = async () => {
   }
 };
 
-export const editProfile = async (data: Partial<EditProfileData>) => {
+export const patchProfile = async (data: Partial<EditProfileData>) => {
   const response = await serverFetch.PATCH<Profile>('/profile', {
     body: JSON.stringify(data),
   });

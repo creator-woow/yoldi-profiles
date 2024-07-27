@@ -8,12 +8,14 @@ interface LinkProps extends PropsWithChildren {
   className?: string;
   href?: string;
   style?: CSSProperties;
+  ariaLabel?: string;
 }
 
 export const Link: FC<LinkProps> = ({
   className,
   href = '',
   style,
+  ariaLabel,
   children,
 }) => {
   return (
@@ -25,6 +27,7 @@ export const Link: FC<LinkProps> = ({
       )}
       style={style}
       href={href}
+      aria-label={ariaLabel}
     >
       {children}
     </NavLink>

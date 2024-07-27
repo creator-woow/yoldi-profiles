@@ -10,17 +10,18 @@ export interface ResponseError {
 
 export const serverFetch = {
   async _createRequest<TResponse>(url: string, options?: RequestInit) {
-    const headers = {
-      'Content-Type':
-        options?.body instanceof FormData
-          ? 'multipart/form-data'
-          : 'application/json',
+    const headers = new Headers({
+      ...options?.headers,
       [API_KEY_HEADER_NAME]: cookies().get(API_KEY_COOKIE_NAME)?.value ?? '',
-    };
+    });
+
+    if (typeof options?.body === 'string') {
+      headers.append('Content-Type', 'application/json');
+    }
 
     const res = await fetch(`${API_URL}${url}`, {
       ...options,
-      headers: { ...options?.headers, ...headers },
+      headers,
     });
 
     const bodyText = (await res.text()) || JSON.stringify(null);

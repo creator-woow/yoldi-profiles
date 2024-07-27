@@ -17,6 +17,7 @@ import { MODAL_CONTAINER_ID } from 'shared/ui/modal';
 import { ThemeProvider } from 'app/providers/theme';
 import { clsx } from 'shared/utils/clsx';
 import { getProfile } from 'entities/profile';
+import { getTranslations } from 'shared/lib/intl';
 
 const interFont = Inter({
   style: 'normal',
@@ -29,8 +30,12 @@ type RootLayoutProps = PropsWithChildren<{
   };
 }>;
 
-export const metadata: Metadata = {
-  title: 'Yoldi Profiles',
+export const generateMetadata = async (): Promise<Metadata> => {
+  const t = await getTranslations();
+  return {
+    title: 'Yoldi Profiles',
+    description: t('root.seo_description'),
+  };
 };
 
 const Providers: FC<PropsWithChildren> = async (props) => {

@@ -3,7 +3,7 @@
 import { ChangeEvent, FC, useState } from 'react';
 
 import { EditProfileData, EditProfileModal } from 'features/editProfile';
-import { Profile, editProfile } from 'entities/profile';
+import { Profile, patchProfile } from 'entities/profile';
 import { Button } from 'shared/ui/button';
 import DeleteIcon from 'shared/icons/trash-bin.svg';
 import LogoutIcon from 'shared/icons/logout.svg';
@@ -28,9 +28,11 @@ export const ProfilePage: FC<ProfilePageProps> = ({
 
   // Set fetcher to null for prevent requests, key in need to be passed for optimistic functionality,
   // actual data for profile gets from app root on server render.
-  const { data: profile, mutate } = useFetch('/profile', null, {
+  const { data: profile, mutate } = useFetch<Profile>('/profile', null, {
     fallbackData: prefetchedProfile,
   });
+
+  if (!profile) return null;
 
   const openEdit = () => setIsEditOpen(true);
   const closeEdit = () => setIsEditOpen(false);
@@ -41,7 +43,11 @@ export const ProfilePage: FC<ProfilePageProps> = ({
     const formData = new FormData();
     formData.append('file', file);
     const imageInfo = await uploadImage(formData);
-    await editProfile({ coverId: imageInfo.id });
+    await patchProfile({ ...profile, coverId: imageInfo.id });
+  };
+
+  const removeCover = async () => {
+    await patchProfile({ ...profile, coverId: null });
   };
 
   const changeAvatar = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -50,11 +56,11 @@ export const ProfilePage: FC<ProfilePageProps> = ({
     const formData = new FormData();
     formData.append('file', file);
     const imageInfo = await uploadImage(formData);
-    await editProfile({ imageId: imageInfo.id });
+    await patchProfile({ ...profile, imageId: imageInfo.id });
   };
 
   const handleDataChange = async (data: EditProfileData) => {
-    await mutate(editProfile(data), {
+    await mutate(patchProfile(data), {
       optimisticData: { ...profile, ...data },
       rollbackOnError: true,
     });
@@ -92,6 +98,7 @@ export const ProfilePage: FC<ProfilePageProps> = ({
               heigth={17}
             />
           }
+          onClick={profile.cover ? removeCover : undefined}
         >
           {profile.cover
             ? t('edit_profile.delete_cover')
@@ -100,6 +107,7 @@ export const ProfilePage: FC<ProfilePageProps> = ({
         {!profile.cover && (
           <input
             className="absolute size-full opacity-0 cursor-pointer"
+            aria-label={t('a11y_only.image_input')}
             type="file"
             accept="image/*"
             onChange={uploadCover}

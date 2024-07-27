@@ -1,4 +1,5 @@
 import { ChangeEvent, FC } from 'react';
+import { useTranslations } from 'shared/hooks/useTranslations';
 
 import { VariantProps, tv } from 'shared/utils/tv';
 import CameraIcon from 'shared/icons/camera.svg';
@@ -31,6 +32,8 @@ export const UserAvatar: FC<UserAvatar> = ({
   className,
   onChange,
 }) => {
+  const t = useTranslations();
+
   return (
     <div
       className={userAvatarVariants({
@@ -42,7 +45,7 @@ export const UserAvatar: FC<UserAvatar> = ({
         <Image
           className="size-full"
           src={user.image.url}
-          alt={user.name}
+          alt={t('a11y_only.image_of', { subject: user.name })}
           width={100}
           height={100}
         />
@@ -50,12 +53,13 @@ export const UserAvatar: FC<UserAvatar> = ({
         user.name[0]
       )}
       {onChange && (
-        <div className="absolute size-full flex items-center justify-center bg-accent text-bg-accent-contrast opacity-0 group-hover:opacity-100">
+        <div className="absolute size-full flex items-center justify-center bg-accent text-bg-accent-contrast opacity-0 group-hover:opacity-100 transition-opacity">
           <CameraIcon
             width={41}
             height={32}
           />
           <input
+            aria-label={t('a11y_only.image_input')}
             className="absolute size-full opacity-0 cursor-pointer"
             type="file"
             accept="image/*"

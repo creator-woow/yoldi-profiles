@@ -1,10 +1,18 @@
 {
+  "root": {
+    "seo_description": "In this app you can create and edit profile, also you can see other users profiles"
+  },
+  "a11y_only": {
+    "image_of": "Image of {subject}",
+    "image_input": "Upload image"
+  },
   "form_validation": {
     "field_required": "Field is required",
     "invalid_email": "Enter valid email"
   },
   "header": {
-    "motto": "Developing and launching complex web projects"
+    "motto": "Developing and launching complex web projects",
+    "logo_link": "Go to index page"
   },
   "entry": {
     "name_field": "Name",

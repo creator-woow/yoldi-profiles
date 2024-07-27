@@ -21,7 +21,10 @@ export const Header: FC = () => {
   return (
     <header className="py-[15px] px-[20px] flex items-center border-b-1 border-b-primary">
       <div className="flex items-center gap-[20px] mr-5 flex-shrink-0">
-        <Link href={RoutePath.UsersRoot}>
+        <Link
+          href={RoutePath.UsersRoot}
+          ariaLabel={t('header.logo_link')}
+        >
           {theme === Theme.light && (
             <LogoLightIcon
               width={80}
