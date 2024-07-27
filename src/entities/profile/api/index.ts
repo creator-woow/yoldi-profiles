@@ -1,13 +1,12 @@
 'use server';
 
 import { EditProfileData } from 'features/editProfile';
-import { Profile } from 'entities/profile';
+import { refreshSession } from 'features/auth';
 import { serverFetch } from 'shared/api/serverFetch';
 
-export const getProfile = async (slug: string) =>
-  serverFetch.GET<Profile>(`/user/${slug}`);
+import { Profile } from '../model';
 
-export const getCurrentUser = async () => {
+export const getProfile = async () => {
   try {
     return await serverFetch.GET<Profile>('/profile');
   } catch (error) {
@@ -15,7 +14,10 @@ export const getCurrentUser = async () => {
   }
 };
 
-export const getProfilesList = async () => serverFetch.GET<Profile[]>('/user');
-
-export const updateProfile = async (data: EditProfileData) =>
-  serverFetch.PATCH<Profile>('/profile', { body: JSON.stringify(data) });
+export const editProfile = async (data: Partial<EditProfileData>) => {
+  const response = await serverFetch.PATCH<Profile>('/profile', {
+    body: JSON.stringify(data),
+  });
+  await refreshSession();
+  return response;
+};

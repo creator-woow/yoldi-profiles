@@ -1,4 +1,1 @@
-export {
-  ProfilePageProvider as ProfilePage,
-  type ProfilePageProviderProps as ProfilePageProps,
-} from './ui/ProfilePageProvider';
+export { ProfilePageProvider as ProfilePage } from './ui/ProfilePageProvider';

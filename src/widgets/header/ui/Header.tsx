@@ -7,8 +7,8 @@ import { useTheme } from 'shared/hooks/useTheme';
 import { Link } from 'shared/ui/link';
 import LogoDarkIcon from 'shared/icons/logo-dark.svg';
 import LogoLightIcon from 'shared/icons/logo-light.svg';
-import { ProfileImage } from 'entities/profile';
 import { RoutePath } from 'shared/lib/const';
+import { UserAvatar } from 'entities/user';
 import { buttonVariants } from 'shared/ui/button';
 import { useAuth } from 'features/auth';
 import { useTranslations } from 'shared/hooks/useTranslations';
@@ -21,7 +21,7 @@ export const Header: FC = () => {
   return (
     <header className="py-[15px] px-[20px] flex items-center border-b-1 border-b-primary">
       <div className="flex items-center gap-[20px] mr-5 flex-shrink-0">
-        <Link href={RoutePath.ProfilesRoot}>
+        <Link href={RoutePath.UsersRoot}>
           {theme === Theme.light && (
             <LogoLightIcon
               width={80}
@@ -57,11 +57,11 @@ export const Header: FC = () => {
         {profile ? (
           <Link
             className="flex items-center gap-[20px]"
-            href={`${RoutePath.ProfilesRoot}/${profile.slug}`}
+            href={RoutePath.Profile}
           >
             <div className="truncate">{profile.name}</div>
-            <ProfileImage
-              profile={profile}
+            <UserAvatar
+              user={profile}
               size="md"
             />
           </Link>

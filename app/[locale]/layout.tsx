@@ -4,8 +4,6 @@ import { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import { getMessages } from 'next-intl/server';
 
-import { getCurrentUser } from 'entities/profile';
-
 import 'app/styles/globals.css';
 import {
   THEME_ATTRIBUTE_NAME,
@@ -18,6 +16,7 @@ import { IntlProvider } from 'app/providers/intl';
 import { MODAL_CONTAINER_ID } from 'shared/ui/modal';
 import { ThemeProvider } from 'app/providers/theme';
 import { clsx } from 'shared/utils/clsx';
+import { getProfile } from 'entities/profile';
 
 const interFont = Inter({
   style: 'normal',
@@ -35,10 +34,7 @@ export const metadata: Metadata = {
 };
 
 const Providers: FC<PropsWithChildren> = async (props) => {
-  const [messages, profile] = await Promise.all([
-    getMessages(),
-    getCurrentUser(),
-  ]);
+  const [messages, profile] = await Promise.all([getMessages(), getProfile()]);
 
   return (
     <IntlProvider messages={messages}>

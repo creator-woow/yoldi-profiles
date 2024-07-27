@@ -1,6 +1,4 @@
-const SERVER_URL =
-  process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
-const API_URL = `${SERVER_URL}/api`;
+import { API_URL } from 'shared/config/api';
 
 export const clientFetch = {
   async _createRequest<TResponse>(url: string, options?: RequestInit) {

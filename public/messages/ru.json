@@ -24,11 +24,14 @@
     "title": "Вход в Yoldi Agency",
     "if_no_account": "Еще нет аккаунта? <link>Зарегистрироваться</link>"
   },
-  "profiles_root_page": {
+  "users_page": {
     "title": "Список аккаунтов"
   },
-  "profile_page": {
+  "user_page": {
     "title": "Страница пользователя \"{name}\""
+  },
+  "profile_page": {
+    "title": "My profile"
   },
   "edit_profile": {
     "upload_cover": "Загрузить",

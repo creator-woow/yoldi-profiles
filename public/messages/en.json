@@ -24,10 +24,13 @@
     "title": "Login in Yoldi Agency",
     "if_no_account": "Don't have an account yet? <link>Sign up</link>"
   },
-  "profiles_root_page": {
+  "users_page": {
     "title": "List of accounts"
   },
   "profile_page": {
+    "title": "My profile"
+  },
+  "user_page": {
     "title": "User page \"{name}\""
   },
   "edit_profile": {

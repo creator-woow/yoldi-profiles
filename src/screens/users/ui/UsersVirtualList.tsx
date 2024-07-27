@@ -1,53 +1,50 @@
 import { FC } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-import { Profile, ProfileImage } from 'entities/profile';
+import { User, UserAvatar } from 'entities/user';
 import {
   VirtualList,
   VirtualListAutoSizer,
   VirtualListChildProps,
 } from 'shared/ui/virtualList';
 import { Link } from 'shared/ui/link';
+import { Profile } from 'entities/profile';
 import { RoutePath } from 'shared/lib/const';
 import { useDebouncedCallback } from 'shared/hooks/useDebounceCallback';
 
-interface ProfilesVirtualListProps {
-  profiles: Profile[];
+interface UsersVirtualList {
+  users: User[];
 }
 
 const SCROLL_INDEX_PARAM_NAME = 'si';
 const ITEM_HEIGHT = 70;
 
-const ProfilePreview = ({
+const UserPreview = ({
   index,
-  data: profiles,
+  data: users,
   style,
 }: VirtualListChildProps<Profile[]>) => {
-  const profile = profiles[index];
+  const user = users[index];
 
   return (
     <Link
       className="py-[10px] flex items-center border-primary border-b-1 gap-[20px] first-of-type:border-t-1"
-      href={`${RoutePath.ProfilesRoot}/${profile.slug}`}
+      href={`${RoutePath.UsersRoot}/${user.slug}`}
       style={style}
     >
-      <ProfileImage
-        profile={profile}
+      <UserAvatar
+        user={user}
         size="md"
       />
       <div className="text-md truncate flex-auto flex flex-col tablet:flex-row tablet:gap-[20px] tablet:items-center ">
-        <span className="font-medium text-primary truncate">
-          {profile.name}
-        </span>
-        <span className="text-secondary tablet:ml-auto">{profile.email}</span>
+        <span className="font-medium text-primary truncate">{user.name}</span>
+        <span className="text-secondary tablet:ml-auto">{user.email}</span>
       </div>
     </Link>
   );
 };
 
-export const ProfilesVirtualList: FC<ProfilesVirtualListProps> = ({
-  profiles,
-}) => {
+export const UsersVirtualList: FC<UsersVirtualList> = ({ users }) => {
   const searchParams = useSearchParams();
   const initialVisibleIndex = +(searchParams.get(SCROLL_INDEX_PARAM_NAME) ?? 1);
 
@@ -70,19 +67,19 @@ export const ProfilesVirtualList: FC<ProfilesVirtualListProps> = ({
     <VirtualListAutoSizer>
       {({ height, width }) => (
         <VirtualList
-          itemData={profiles}
-          itemKey={(index) => profiles[index].slug}
+          itemData={users}
+          itemKey={(index) => users[index].slug}
           initialScrollOffset={initialVisibleIndex * ITEM_HEIGHT}
           overscanCount={5}
           itemSize={ITEM_HEIGHT}
           height={height}
-          itemCount={profiles.length}
+          itemCount={users.length}
           width={width}
           onItemsRendered={(props) =>
             handleItemsRender(props.visibleStartIndex)
           }
         >
-          {ProfilePreview}
+          {UserPreview}
         </VirtualList>
       )}
     </VirtualListAutoSizer>

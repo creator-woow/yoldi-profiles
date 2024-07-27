@@ -28,7 +28,7 @@ export const LoginPage: FC = () => {
   const onSubmit = handleSubmit((data) =>
     loginUser(data).then((responseError) => {
       if (!responseError) {
-        return router.push(RoutePath.ProfilesRoot);
+        return router.push(RoutePath.UsersRoot);
       }
       setError('root', { message: responseError.message });
     }),

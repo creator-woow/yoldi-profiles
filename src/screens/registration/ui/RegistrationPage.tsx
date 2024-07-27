@@ -45,7 +45,7 @@ export const RegistrationPage: FC = () => {
   const onSubmit = handleSubmit((data) =>
     registerUser(data).then((responseError) => {
       if (!responseError) {
-        return router.push(RoutePath.ProfilesRoot);
+        return router.push(RoutePath.UsersRoot);
       }
       setError('email', { message: responseError.message });
     }),

@@ -5,12 +5,8 @@
  * `${RoutePath.ProfileRoot}/${profileId}`
  */
 export const enum RoutePath {
-  ProfilesRoot = '/profiles',
+  Profile = '/profile',
+  UsersRoot = '/users',
   Registration = '/registration',
   Login = '/login',
-}
-
-export const enum RouteHandlerPath {
-  Login = `${RoutePath.Login}/api`,
-  Registration = `${RoutePath.Registration}/api`,
 }

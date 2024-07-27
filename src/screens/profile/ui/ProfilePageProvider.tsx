@@ -1,19 +1,15 @@
 import { FC } from 'react';
+import { redirect } from 'next/navigation';
 
+import { RoutePath } from 'shared/lib/const';
 import { getProfile } from 'entities/profile';
 
 import { ProfilePage } from './ProfilePage';
 
-export interface ProfilePageProviderProps {
-  params: {
-    profileSlug: string;
-  };
-}
+export const ProfilePageProvider: FC = async () => {
+  const profile = await getProfile();
 
-export const ProfilePageProvider: FC<ProfilePageProviderProps> = async ({
-  params,
-}) => {
-  const profile = await getProfile(params.profileSlug);
+  if (!profile) redirect(RoutePath.Login);
 
   return <ProfilePage profile={profile} />;
 };

@@ -10,6 +10,8 @@ export const EditProfileDataSchema = (t: UseTranslationReturn) =>
     name: z.string().trim().min(1, t('form_validation.field_required')),
     slug: z.string().trim().min(1, t('form_validation.field_required')),
     description: z.string().nullable(),
+    imageId: z.string().optional().nullable(),
+    coverId: z.string().optional().nullable(),
   });
 
 export type EditProfileData = ValidationSchemaFields<
