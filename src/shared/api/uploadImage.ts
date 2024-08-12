@@ -1,6 +1,6 @@
 'use server';
 
-import { serverFetch } from 'shared/api/serverFetch';
+import { POST } from './serverFetch';
 
 interface ImageInfo {
   id: string;
@@ -10,5 +10,5 @@ interface ImageInfo {
 }
 
 export const uploadImage = async (formData: FormData) => {
-  return serverFetch.POST<ImageInfo>('/image', { body: formData });
+  return POST<ImageInfo>('/image', { body: formData });
 };

@@ -1,1 +1,1 @@
-export { FormHelperText } from './ui/FormHelperText';
+export { FormHelperText } from './FormHelperText';

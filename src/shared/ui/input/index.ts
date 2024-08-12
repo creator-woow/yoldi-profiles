@@ -1,2 +1,2 @@
-export { Input, inputVariants } from './ui/Input';
-export type { InputProps } from './ui/Input';
+export { Input, inputVariants } from './Input';
+export type { InputProps } from './Input';

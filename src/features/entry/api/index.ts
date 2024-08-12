@@ -2,14 +2,14 @@
 
 import { cookies } from 'next/headers';
 
-import { ResponseError, serverFetch } from 'shared/api/serverFetch';
-import { API_KEY_COOKIE_NAME } from 'shared/config/auth';
+import { POST, ResponseError } from 'shared/api';
+import { API_KEY_COOKIE_NAME } from 'shared/config';
 
 import { LoginData, RegistrationData } from '../model/schema';
 
 export const loginUser = async (data: LoginData) => {
   try {
-    const token = await serverFetch.POST<{ value: string }>('/auth/login', {
+    const token = await POST<{ value: string }>('/auth/login', {
       body: JSON.stringify(data),
     });
     cookies().set(API_KEY_COOKIE_NAME, token.value, { httpOnly: true });
@@ -20,7 +20,7 @@ export const loginUser = async (data: LoginData) => {
 
 export const registerUser = async (data: RegistrationData) => {
   try {
-    const token = await serverFetch.POST<{ value: string }>('/auth/sign-up', {
+    const token = await POST<{ value: string }>('/auth/sign-up', {
       body: JSON.stringify(data),
     });
     cookies().set(API_KEY_COOKIE_NAME, token.value, { httpOnly: true });

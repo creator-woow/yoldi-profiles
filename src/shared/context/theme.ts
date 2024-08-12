@@ -1,6 +1,8 @@
+'use client';
+
 import { createContext } from 'react';
 
-import { Theme } from 'shared/config/theme';
+import { Theme } from 'shared/config';
 
 interface ThemeContext {
   theme: Theme;

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
-import { UserPage, UserPageProps } from 'screens/user';
-import { getTranslations } from 'shared/lib/intl';
+import { UserPage, UserPageProps } from 'pages-view/user';
+import { getTranslations } from 'shared/lib';
 import { getUser } from 'entities/user';
 
 export const generateMetadata = async ({

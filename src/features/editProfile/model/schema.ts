@@ -2,8 +2,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-nocheck
 
-import { ValidationSchemaFields, z } from 'shared/lib/validator';
-import { UseTranslationReturn } from 'shared/hooks/useTranslations';
+import { UseTranslationReturn, ValidationSchemaFields, z } from 'shared/lib';
 
 export const EditProfileDataSchema = (t: UseTranslationReturn) =>
   z.object({

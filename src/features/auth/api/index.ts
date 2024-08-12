@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers';
 
-import { API_KEY_COOKIE_NAME } from 'shared/config/auth';
+import { API_KEY_COOKIE_NAME } from 'shared/config';
 
 export const refreshSession = async () => {
   const token = cookies().get(API_KEY_COOKIE_NAME);

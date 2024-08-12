@@ -1,2 +1,2 @@
-export { MODAL_CONTAINER_ID } from './ui/Modal';
-export { ModalProvider as Modal } from './ui/ModalProvider';
+export { MODAL_CONTAINER_ID } from './Modal';
+export { ModalProvider as Modal } from './ModalProvider';
