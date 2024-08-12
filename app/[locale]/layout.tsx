@@ -5,19 +5,12 @@ import { cookies } from 'next/headers';
 import { getMessages } from 'next-intl/server';
 
 import 'app/styles/globals.css';
-import {
-  THEME_ATTRIBUTE_NAME,
-  THEME_COOKIE_NAME,
-  Theme,
-} from 'shared/config/theme';
-import { AuthProvider } from 'app/providers/auth';
+import { AuthProvider, IntlProvider, ThemeProvider } from 'app/providers';
+import { THEME_ATTRIBUTE_NAME, THEME_COOKIE_NAME, Theme } from 'shared/config';
+import { clsx, getTranslations } from 'shared/lib';
 import { Header } from 'widgets/header';
-import { IntlProvider } from 'app/providers/intl';
-import { MODAL_CONTAINER_ID } from 'shared/ui/modal';
-import { ThemeProvider } from 'app/providers/theme';
-import { clsx } from 'shared/utils/clsx';
+import { MODAL_CONTAINER_ID } from 'shared/ui';
 import { getProfile } from 'entities/profile';
-import { getTranslations } from 'shared/lib/intl';
 
 const interFont = Inter({
   style: 'normal',

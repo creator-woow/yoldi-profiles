@@ -1,12 +1,8 @@
 import { forwardRef, useState } from 'react';
-import { useTranslations } from 'shared/hooks/useTranslations';
 
-import { TextField, TextFieldProps } from 'shared/ui/textField';
-import { Button } from 'shared/ui/button';
-import CloseEyeIcon from 'shared/icons/eye-closed.svg';
-import EyeIcon from 'shared/icons/eye.svg';
-import LockIcon from 'shared/icons/lock.svg';
-import { clsx } from 'shared/utils/clsx';
+import { Button, TextField, TextFieldProps } from 'shared/ui';
+import { EyeClosedIcon, EyeIcon, LockIcon } from 'shared/icons';
+import { clsx, useTranslations } from 'shared/lib';
 
 interface PasswordFieldProps extends Omit<TextFieldProps, 'type'> {}
 
@@ -42,7 +38,7 @@ export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(
             onClick={togglePasswordVisible}
           >
             {passwordVisible ? (
-              <CloseEyeIcon
+              <EyeClosedIcon
                 width={23}
                 heigth={15}
               />

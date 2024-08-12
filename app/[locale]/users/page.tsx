@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
-import { UsersPage } from 'screens/users';
-import { getTranslations } from 'shared/lib/intl';
+import { UsersPage } from 'pages-view/users';
+import { getTranslations } from 'shared/lib';
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const t = await getTranslations();

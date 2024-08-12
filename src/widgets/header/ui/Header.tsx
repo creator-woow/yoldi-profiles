@@ -1,17 +1,13 @@
 'use client';
 
 import { FC } from 'react';
-import { Theme } from 'shared/config/theme';
-import { useTheme } from 'shared/hooks/useTheme';
 
-import { Link } from 'shared/ui/link';
-import LogoDarkIcon from 'shared/icons/logo-dark.svg';
-import LogoLightIcon from 'shared/icons/logo-light.svg';
-import { RoutePath } from 'shared/lib/const';
+import { Link, buttonVariants } from 'shared/ui';
+import { LogoDark, LogoLight } from 'shared/icons';
+import { RoutePath, useTheme, useTranslations } from 'shared/lib';
+import { Theme } from 'shared/config';
 import { UserAvatar } from 'entities/user';
-import { buttonVariants } from 'shared/ui/button';
 import { useAuth } from 'features/auth';
-import { useTranslations } from 'shared/hooks/useTranslations';
 
 export const Header: FC = () => {
   const t = useTranslations();
@@ -26,25 +22,25 @@ export const Header: FC = () => {
           ariaLabel={t('header.logo_link')}
         >
           {theme === Theme.light && (
-            <LogoLightIcon
+            <LogoLight
               width={80}
               height={50}
             />
           )}
           {theme === Theme.dark && (
-            <LogoDarkIcon
+            <LogoDark
               width={80}
               height={50}
             />
           )}
           {theme === Theme.system && (
             <>
-              <LogoLightIcon
+              <LogoLight
                 className="dark:hidden"
                 width={80}
                 height={50}
               />
-              <LogoDarkIcon
+              <LogoDark
                 className="hidden dark:block"
                 width={80}
                 height={50}

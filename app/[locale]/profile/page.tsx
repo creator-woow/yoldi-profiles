@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
-import { ProfilePage } from 'screens/profile';
-import { getTranslations } from 'shared/lib/intl';
+import { ProfilePage } from 'pages-view/profile';
+import { getTranslations } from 'shared/lib';
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const t = await getTranslations();

@@ -1,2 +1,3 @@
 export { EditProfileModal } from './ui/EditProfileModal';
-export type { EditProfileData } from './model/schema';
+export { editProfile } from './api';
+export { EditProfileDataSchema, type EditProfileData } from './model/schema';

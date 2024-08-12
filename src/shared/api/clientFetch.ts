@@ -1,4 +1,4 @@
-import { API_URL } from 'shared/config/api';
+import { API_URL } from 'shared/config';
 
 export const clientFetch = {
   async _createRequest<TResponse>(url: string, options?: RequestInit) {

@@ -1,7 +1,7 @@
 import { ZodSchema, z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { UseTranslationReturn } from 'shared/hooks/useTranslations';
+import { UseTranslationReturn } from 'shared/lib';
 
 type ValidationSchemaGenerator = (t: UseTranslationReturn) => ZodSchema;
 

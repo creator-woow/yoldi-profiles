@@ -1,14 +1,18 @@
+'use server';
+
 import { cookies } from 'next/headers';
 
-import { API_KEY_COOKIE_NAME, API_KEY_HEADER_NAME } from 'shared/config/auth';
-import { API_URL } from 'shared/config/api';
+import { API_KEY_COOKIE_NAME, API_KEY_HEADER_NAME } from 'shared/config';
+
+const SERVER_URL = process.env.SERVER_URL || 'http://localhost:3000';
+const API_URL = `${SERVER_URL}/api`;
 
 export interface ResponseError {
   statusCode: number;
   message: string;
 }
 
-export const serverFetch = {
+const serverFetch = {
   async _createRequest<TResponse>(url: string, options?: RequestInit) {
     const headers = new Headers({
       ...options?.headers,
@@ -33,24 +37,27 @@ export const serverFetch = {
     return JSON.parse(bodyText) as TResponse;
   },
 
-  POST<TResponse>(url: string, options?: RequestInit) {
+  async POST<TResponse>(url: string, options?: RequestInit) {
     return serverFetch._createRequest<TResponse>(url, {
       ...options,
       method: 'POST',
     });
   },
 
-  GET<TResponse>(url: string, options?: RequestInit) {
+  async GET<TResponse>(url: string, options?: RequestInit) {
     return serverFetch._createRequest<TResponse>(url, {
       ...options,
       method: 'GET',
     });
   },
 
-  PATCH<TResponse>(url: string, options?: RequestInit) {
+  async PATCH<TResponse>(url: string, options?: RequestInit) {
     return serverFetch._createRequest<TResponse>(url, {
       ...options,
       method: 'PATCH',
     });
   },
 };
+
+const { POST, GET, PATCH } = serverFetch;
+export { POST, GET, PATCH };

@@ -1,9 +1,8 @@
 import { ChangeEvent, FC } from 'react';
-import { useTranslations } from 'shared/hooks/useTranslations';
 
-import { VariantProps, tv } from 'shared/utils/tv';
-import CameraIcon from 'shared/icons/camera.svg';
-import { Image } from 'shared/ui/image';
+import { VariantProps, tv, useTranslations } from 'shared/lib';
+import { CameraIcon } from 'shared/icons';
+import { Image } from 'shared/ui';
 
 import { User } from '../model';
 

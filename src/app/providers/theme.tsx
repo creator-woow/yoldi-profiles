@@ -7,9 +7,9 @@ import {
   THEME_COOKIE_NAME,
   Theme,
   isValidTheme,
-} from 'shared/config/theme';
-import { getClientCookie, setClientCookie } from 'shared/lib/cookie';
-import { themeContext } from 'shared/context/theme';
+} from 'shared/config';
+import { getClientCookie, setClientCookie } from 'shared/lib';
+import { themeContext } from 'shared/context';
 
 export const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
