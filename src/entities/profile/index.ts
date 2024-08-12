@@ -1,2 +1,2 @@
 export type { Profile } from './model';
-export { getProfile } from './api';
+export { getProfile, refreshProfile } from './api';
