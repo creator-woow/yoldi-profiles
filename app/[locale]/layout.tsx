@@ -8,8 +8,7 @@ import 'app/styles/globals.css';
 import { AuthProvider, IntlProvider, ThemeProvider } from 'app/providers';
 import { THEME_ATTRIBUTE_NAME, THEME_COOKIE_NAME, Theme } from 'shared/config';
 import { clsx, getTranslations } from 'shared/lib';
-import { Header } from 'widgets/header';
-import { MODAL_CONTAINER_ID } from 'shared/ui';
+import { MainLayout } from 'app/ui';
 import { getProfile } from 'entities/profile';
 
 const interFont = Inter({
@@ -55,16 +54,7 @@ const RootLayout: FC<RootLayoutProps> = ({ params, children }) => {
     <html {...htmlAttributes}>
       <body className={clsx(interFont.className, 'bg-primary text-primary')}>
         <Providers>
-          <div className="flex flex-col h-dvh">
-            <Header />
-            <div className="flex flex-col flex-auto overflow-hidden relative">
-              <main className="flex-auto overflow-auto">{children}</main>
-              <div
-                className="absolute inset-0 empty:hidden z-50"
-                id={MODAL_CONTAINER_ID}
-              />
-            </div>
-          </div>
+          <MainLayout>{children}</MainLayout>
         </Providers>
       </body>
     </html>

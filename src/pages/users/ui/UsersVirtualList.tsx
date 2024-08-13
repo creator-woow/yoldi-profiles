@@ -45,7 +45,9 @@ const UserPreview = ({
 
 export const UsersVirtualList: FC<UsersVirtualList> = ({ users }) => {
   const searchParams = useSearchParams();
-  const initialVisibleIndex = +(searchParams.get(SCROLL_INDEX_PARAM_NAME) ?? 1);
+  const initialVisibleIndex = +(
+    searchParams?.get(SCROLL_INDEX_PARAM_NAME) ?? 1
+  );
 
   const saveVisibleIndex = (index: number) => {
     window.history.replaceState(

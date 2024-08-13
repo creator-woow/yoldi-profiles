@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { UserPage, UserPageProps } from 'pages-view/user';
+import { UserPage, UserPageProps } from 'pages/user';
 import { getTranslations } from 'shared/lib';
 import { getUser } from 'entities/user';
 
