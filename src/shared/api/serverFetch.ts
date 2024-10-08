@@ -2,10 +2,11 @@
 
 import { cookies } from 'next/headers';
 
-import { API_KEY_COOKIE_NAME, API_KEY_HEADER_NAME } from 'shared/config';
-
-const SERVER_URL = process.env.SERVER_URL || 'http://localhost:3000';
-const API_URL = `${SERVER_URL}/api`;
+import {
+  API_KEY_COOKIE_NAME,
+  API_KEY_HEADER_NAME,
+  API_URL,
+} from 'shared/config';
 
 export interface ResponseError {
   statusCode: number;

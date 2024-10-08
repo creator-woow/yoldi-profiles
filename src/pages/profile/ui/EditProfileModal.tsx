@@ -1,9 +1,10 @@
 import { FC, PropsWithChildren } from 'react';
 
 import { Button, Form, Modal, TextField } from 'shared/ui';
-import { EditProfileData, EditProfileDataSchema } from 'features/editProfile';
 import { useForm, useTranslations, zodResolver } from 'shared/lib';
 import { Profile } from 'entities/profile';
+
+import { EditProfileData, EditProfileDataSchema } from '../model/schema';
 
 interface EditProfileModalProps extends PropsWithChildren {
   profile: Profile;

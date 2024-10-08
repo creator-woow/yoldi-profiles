@@ -8,7 +8,7 @@ import {
   LoginDataSchema,
   PasswordField,
   loginUser,
-} from 'features/entry';
+} from 'features/auth';
 import {
   RoutePath,
   useForm,

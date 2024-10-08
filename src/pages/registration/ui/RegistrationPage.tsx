@@ -9,7 +9,7 @@ import {
   RegistrationData,
   RegistrationDataSchema,
   registerUser,
-} from 'features/entry';
+} from 'features/auth';
 import {
   RoutePath,
   useForm,

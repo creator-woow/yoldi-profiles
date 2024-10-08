@@ -3,11 +3,6 @@
 import { ChangeEvent, FC, useState } from 'react';
 
 import {
-  EditProfileData,
-  EditProfileModal,
-  editProfile,
-} from 'features/editProfile';
-import {
   LogoutIcon,
   PencilIcon,
   PictureIcon,
@@ -18,8 +13,12 @@ import { useFetch, useTranslations } from 'shared/lib';
 import { Button } from 'shared/ui';
 import { Profile } from 'entities/profile';
 import { UserAvatar } from 'entities/user';
-import { logoutUser } from 'features/entry';
+import { logoutUser } from 'features/auth';
 import { uploadImage } from 'shared/api';
+
+import { EditProfileData } from '../model/schema';
+import { EditProfileModal } from './EditProfileModal';
+import { editProfile } from '../api';
 
 interface ProfilePageProps {
   profile: Profile;

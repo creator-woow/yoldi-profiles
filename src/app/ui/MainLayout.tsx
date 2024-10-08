@@ -1,7 +1,8 @@
 import { FC, PropsWithChildren } from 'react';
 
-import { Header } from 'widgets/header';
 import { MODAL_CONTAINER_ID } from 'shared/ui';
+
+import { Header } from './Header';
 
 export const MainLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
